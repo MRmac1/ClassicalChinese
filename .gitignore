@@ -5,5 +5,3 @@
 node_modules
 tmp
 logs
-app/public/node_modules
-app/public/dist
