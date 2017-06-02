@@ -1,0 +1,9 @@
+*.psd
+.idea
+.DS_Store
+*.png
+node_modules
+tmp
+logs
+app/public/node_modules
+app/public/dist

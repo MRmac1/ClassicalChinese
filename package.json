@@ -1,0 +1,25 @@
+{
+  "name": "ClassicalChinese",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "egg-bin test",
+    "dev": "egg-bin dev",
+    "start": "EGG_SERVER_ENV=prod npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "egg-bin": "^3.4.0",
+    "egg-mock": "^3.7.0"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "egg": "^1.3.0",
+    "egg-mysql": "^3.0.0",
+    "egg-view-ejs": "^1.1.0",
+    "koa-cors": "0.0.16"
+  }
+}
