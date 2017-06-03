@@ -21,5 +21,9 @@
     "egg-mysql": "^3.0.0",
     "egg-view-ejs": "^1.1.0",
     "koa-cors": "0.0.16"
+  },
+  "repository":  {
+    "type" : "git",
+    "url" : "https://github.com/MRmac1/ClassicalChinese"
   }
 }

@@ -1,11 +1,8 @@
 exports.keys = ":3Fq8Z4pGPmuP[%qh?C#]>pk@ysyq5";
 exports.mysql = {
   clients: {
-    nodeSpider: {
-      database: 'nodeSpider',
-    },
-    gushiwen: {
-      database: 'gushiwen',
+    poets: {
+      database: 'poets',
     }
   },
   // 所有数据库配置的默认值

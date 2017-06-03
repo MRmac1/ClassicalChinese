@@ -3,7 +3,7 @@
 *
 * logic
 *
-* 分为作者爬取，post爬取
+* 分为author爬取，post爬取
 *
 * create_time 2017年05月23日12:45:10
 * update_time 2017年05月23日12:45:17
