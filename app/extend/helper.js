@@ -57,7 +57,6 @@ module.exports = {
 };
 
 function* completeAuthorInfo( ctx, authorBaseInfo ) {
-  console.log( JSON.stringify(authorBaseInfo) );
   let batchArr = [];
   //替换authorUrl，并组成promises数组
   authorBaseInfo.forEach( ( item ) => {
@@ -66,7 +65,8 @@ function* completeAuthorInfo( ctx, authorBaseInfo ) {
   });
   try {
     let authorsDetailInfo = yield batchArr;
-    yield ctx.service.author.authorInfoBatchSave( authorsDetailInfo );
+    console.log( 'authorsDetailInfo', JSON.stringify(authorsDetailInfo) );
+    // yield ctx.service.author.authorInfoBatchSave( authorsDetailInfo );
   } catch (e) {
     console.log( 'batchArr error', e );
   }
@@ -100,6 +100,9 @@ function authorDealPageIntercept ( ctx, authorBase ) {
 }
 
 /*
+查询作者所在朝代
+SELECT * from periods where (end_year BETWEEN 908 and 958) or (start_year BETWEEN 908 and 958) or ( start_year < 908 and end_year > 958 );
+
  （737～792）
  content.match(/（.+）/)
 * [{"authorImg":"http://img.gushiwen.org/authorImg/nalanxingde.jpg","authorUrl":"/author_188.aspx","name":"纳兰性德","briefIntroduction":"纳兰性德（1655－1685），满洲人，字容若，号楞伽山人，清代最著名词人之一。其诗词“纳兰词”在清代以至整个中国词坛上都享有很高的声誉，在中国文学史上也占有光采夺目的一席。他生活于满汉融合时期，其贵族家庭兴衰具有关联于王朝国事的典型性。虽侍从帝王，却向往经历平淡。特殊的生活环境背景，
