@@ -5,7 +5,7 @@ module.exports = app => {
      * @param authorsDetailInfo
      */
     * authorInfoBatchSave( authorsDetailInfo ) {
-      this.poetsClient = app.mysql.get('poets');
+      this.poetsClient = app.mysql.get('poets');//这里一个类的共享变量，值得思考如何共享 TODO
       /*
       * 先插入作者表，得到id后再插入anecdote表
       * */
@@ -19,7 +19,7 @@ module.exports = app => {
           return;
         }
         authorInfo.anecdote.forEach( (anecdote) => {
-          anecdotePromises.push( authorId, this.insertAnecdote(anecdote) );
+          anecdotePromises.push( this.insertAnecdote( authorId, anecdote ) );
         });
         try {
           yield anecdotePromises;
@@ -29,12 +29,19 @@ module.exports = app => {
         }
       }
     }
+
     /**
      * 插入author表
      * @param authorInfo
+     * @returns {Number}
      */
     * insertAuthor( authorInfo ) {
-      let result = yield this.poetsClient.insert('posts', { title: 'Hello World' });
+      let result = yield this.poetsClient.insert('authors', {
+        name: authorInfo.name,
+        brief_introduction: authorInfo.briefIntroduction,
+        author_img: authorInfo.authorImg
+      });
+      return result.insertId;
     }
     /**
      * 插入anecdote表
@@ -43,18 +50,10 @@ module.exports = app => {
      * @returns {Promise}
      */
     insertAnecdote( authorId, anecdote ) {
-      return new Promise( ( resolve, reject ) => {
-        let anecdoteTitle = anecdote.anecdoteTitle;
-        let anecdoteUrl = anecdote.anecdoteUrl;
-        app.curl( anecdoteUrl, {
-          dataType: 'text',
-          timeout: 5000
-        }).then( anecdoteRes => {
-          //解析出内容，然后保存
-          this.poetsClient.query().then();
-
-        });
-
+      return this.poetsClient.insert('anecdotes', {
+        author_id: authorId,
+        anecdote_title: anecdote.anecdoteTitle,
+        anecdote_detail: anecdote.anecdoteUrl
       });
     }
   }

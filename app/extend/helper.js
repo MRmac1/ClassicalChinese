@@ -83,13 +83,14 @@ function authorDealPageIntercept ( ctx, authorBase ) {
     } ).then( authorPageResponse => {
       let authorDetailPageText = authorPageResponse.data;
       let $ = cheerio.load( authorDetailPageText ),
-          anecdoteGroup = $('.son5');
+          anecdoteGroup = $('.sons[style=\'display:none;\']');
+      //$($('.sons[style=\'display:none;\']')[0]).find('.contyishang p:nth-of-type(n+3)').text().trim()
       anecdoteGroup.each( ( i, element ) => {
-        let anecdoteTitle = $(element).find('p:nth-of-type(1) a').text();
-        let anecdoteUrl = HOST + $(element).find('p:nth-of-type(1) a').attr('href');
+        let anecdoteTitle = $(element).find('.contyishang p:nth-of-type(1)').text().trim();
+        let anecdoteDetail = $(element).find('.contyishang p:nth-of-type(n+3)').text().trim();
         authorBase.anecdote.push({
           anecdoteTitle: anecdoteTitle,
-          anecdoteUrl: anecdoteUrl
+          anecdoteDetail: anecdoteDetail
         });
       });
       resolve( authorBase );

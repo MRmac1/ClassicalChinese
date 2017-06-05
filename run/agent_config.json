@@ -20,8 +20,8 @@
     "watcher": {
       "type": "development",
       "eventSources": {
-        "default": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-watcher@2.1.2@egg-watcher/lib/event-sources/default",
-        "development": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-watcher@2.1.2@egg-watcher/lib/event-sources/development"
+        "default": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-watcher\\lib\\event-sources\\default",
+        "development": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-watcher\\lib\\event-sources\\development"
       }
     },
     "multipart": {
@@ -89,18 +89,22 @@
     },
     "static": {
       "prefix": "/public/",
-      "dir": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/app/public",
+      "dir": "G:\\code\\demo\\ClassicalChinese\\app\\public",
       "dynamic": true,
       "preload": false,
-      "buffer": false
+      "buffer": false,
+      "maxFiles": 1000
     },
     "jsonp": {
       "limit": 50,
-      "callback": "_callback",
+      "callback": [
+        "_callback",
+        "callback"
+      ],
       "csrf": false
     },
     "view": {
-      "root": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/app/view",
+      "root": "G:\\code\\demo\\ClassicalChinese\\app\\view",
       "cache": true,
       "defaultExtension": ".html",
       "defaultViewEngine": "ejs",
@@ -127,7 +131,7 @@
       }
     },
     "ejs": {
-      "root": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/app/view",
+      "root": "G:\\code\\demo\\ClassicalChinese\\app\\view",
       "cache": true,
       "debug": false,
       "compileDebug": true,
@@ -170,9 +174,9 @@
         "url": "https://github.com/MRmac1/ClassicalChinese"
       }
     },
-    "baseDir": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese",
-    "HOME": "/Users/mr_mac1",
-    "rundir": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/run",
+    "baseDir": "G:\\code\\demo\\ClassicalChinese",
+    "HOME": "C:\\Users\\Administrator",
+    "rundir": "G:\\code\\demo\\ClassicalChinese\\run",
     "dump": {
       "ignore": "<Set>"
     },
@@ -202,7 +206,7 @@
       }
     },
     "logger": {
-      "dir": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/logs/ClassicalChinese",
+      "dir": "G:\\code\\demo\\ClassicalChinese\\logs\\ClassicalChinese",
       "encoding": "utf8",
       "env": "unittest",
       "level": "INFO",
@@ -220,9 +224,11 @@
       "keepAlive": true,
       "freeSocketKeepAliveTimeout": 4000,
       "timeout": 30000,
-      "maxSockets": null,
+      "maxSockets": 9007199254740991,
       "maxFreeSockets": 256,
-      "enableDNSCache": false
+      "enableDNSCache": false,
+      "dnsCacheMaxLength": 1000,
+      "dnsCacheMaxAge": 10000
     },
     "coreMiddleware": [
       "meta",
@@ -255,9 +261,9 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-onerror@1.3.0@egg-onerror",
-      "version": "1.3.0"
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-onerror",
+      "version": "1.4.2"
     },
     "session": {
       "enable": true,
@@ -266,8 +272,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-session@2.1.0@egg-session",
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-session",
       "version": "2.1.0"
     },
     "i18n": {
@@ -277,8 +283,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-i18n@1.1.1@egg-i18n",
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-i18n",
       "version": "1.1.1"
     },
     "watcher": {
@@ -288,8 +294,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-watcher@2.1.2@egg-watcher",
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-watcher",
       "version": "2.1.2"
     },
     "multipart": {
@@ -299,8 +305,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-multipart@1.4.0@egg-multipart",
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-multipart",
       "version": "1.4.0"
     },
     "security": {
@@ -312,8 +318,8 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-security@1.10.0@egg-security",
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-security",
       "version": "1.10.0"
     },
     "schedule": {
@@ -323,8 +329,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-schedule@2.3.0@egg-schedule",
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-schedule",
       "version": "2.3.0"
     },
     "logrotator": {
@@ -336,8 +342,8 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-logrotator@2.2.2@egg-logrotator",
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-logrotator",
       "version": "2.2.2"
     },
     "static": {
@@ -347,9 +353,9 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-static@1.3.0@egg-static",
-      "version": "1.3.0"
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-static",
+      "version": "1.4.0"
     },
     "jsonp": {
       "enable": true,
@@ -360,9 +366,9 @@
         "security"
       ],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-jsonp@1.0.0@egg-jsonp",
-      "version": "1.0.0"
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-jsonp",
+      "version": "1.1.0"
     },
     "view": {
       "enable": true,
@@ -371,8 +377,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg@1.3.0@egg/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-view@1.1.0@egg-view",
+      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-view",
       "version": "1.1.0"
     },
     "mysql": {
@@ -382,8 +388,8 @@
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/_egg-mysql@3.0.0@egg-mysql",
+      "from": "G:\\code\\demo\\ClassicalChinese\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-mysql",
       "version": "3.0.0"
     },
     "ejs": {
@@ -395,18 +401,18 @@
       ],
       "optionalDependencies": [],
       "env": [],
-      "from": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/plugin.js",
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view-ejs",
+      "from": "G:\\code\\demo\\ClassicalChinese\\config\\plugin.js",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-view-ejs",
       "version": "1.1.0"
     },
     "egg-mock": {
       "enable": true,
-      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-mock",
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-mock",
       "name": "egg-mock",
       "dependencies": [],
       "optionalDependencies": [],
       "env": [],
-      "version": "3.7.0"
+      "version": "3.7.1"
     }
   }
 }
