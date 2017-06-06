@@ -65,8 +65,7 @@ function* completeAuthorInfo( ctx, authorBaseInfo ) {
   });
   try {
     let authorsDetailInfo = yield batchArr;
-    console.log( 'authorsDetailInfo', JSON.stringify(authorsDetailInfo) );
-    // yield ctx.service.author.authorInfoBatchSave( authorsDetailInfo );
+    yield ctx.service.author.authorInfoBatchSave( authorsDetailInfo );
   } catch (e) {
     console.log( 'batchArr error', e );
   }
@@ -84,7 +83,6 @@ function authorDealPageIntercept ( ctx, authorBase ) {
       let authorDetailPageText = authorPageResponse.data;
       let $ = cheerio.load( authorDetailPageText ),
           anecdoteGroup = $('.sons[style=\'display:none;\']');
-      //$($('.sons[style=\'display:none;\']')[0]).find('.contyishang p:nth-of-type(n+3)').text().trim()
       anecdoteGroup.each( ( i, element ) => {
         let anecdoteTitle = $(element).find('.contyishang p:nth-of-type(1)').text().trim();
         let anecdoteDetail = $(element).find('.contyishang p:nth-of-type(n+3)').text().trim();
