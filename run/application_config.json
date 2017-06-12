@@ -275,6 +275,9 @@
       "securities"
     ],
     "workerStartTimeout": 600000,
+    "consts": {
+      "GUSHIWEN": 1
+    },
     "middleware": [
       "cors"
     ],

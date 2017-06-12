@@ -11,24 +11,44 @@ const HOST = `http://so.gushiwen.org`;
 module.exports = {
   * dealAuthorsList ( authorUrl ) {
 
-    let currentPage = 1, authorCount = 0, ctx = this.ctx;//默认初始页
+    let currentPage = 1, authorCount = 0, ctx = this.ctx, app = this.app;//默认初始页
     let interceptAuthorInfo = function* ( $ ) {
       let onePageAuthors = [];
       $('.sonspic').each( ( i, element ) => {
         let contentSection = $(element).find('.cont'),
-          authorImg = '',
-          authorUrl = '',
-          name,
-          briefIntroduction;
+            authorImg = '',
+            authorUrl = '',
+            sourceId,
+            source = app.config.consts.GUSHIWEN,
+            name,
+            birthYear,
+            deathYear,
+            lifeTime = 50,
+            briefIntroduction;
         //取头像，不一定存在
         !_.isEmpty( contentSection.find('.divimg') ) ? authorImg = contentSection.find('.divimg img').attr('src') : '';
         name = contentSection.find('p:nth-of-type(1) a').text();
         authorUrl = contentSection.find('p:nth-of-type(1) a').attr('href');
+        sourceId = authorUrl.match(/\d+/g)[0];
         briefIntroduction = contentSection.find('p:nth-of-type(2)').text();
+        //在简介里截取出作者的出生年月，很有可能获取不到，需要手工校验，正则可以优化下 TODO
+        console.log( 'briefIntroduction', briefIntroduction );
+        let ageInfo = briefIntroduction.match(/（.+）/)[0].match(/\d+/g);
+        if ( _.isArray( ageInfo ) ) {
+          [ birthYear, deathYear ] = ageInfo.map( ( item ) => {
+            return parseInt( item );
+          });
+        }
+        _.isNumber( birthYear ) && _.isNumber( deathYear ) ?  lifeTime = deathYear - birthYear : '';
         let authorBaseInfo = {
           authorImg: authorImg,
           authorUrl: authorUrl,
+          sourceId: sourceId,
+          source: source,
           name: name,
+          birthYear: birthYear,
+          deathYear: deathYear,
+          lifeTime: lifeTime,
           briefIntroduction: briefIntroduction
         };
         onePageAuthors.push( authorBaseInfo );
@@ -47,7 +67,6 @@ module.exports = {
       let $ = cheerio.load( authorPageText );
       yield interceptAuthorInfo( $ );
       authorCount = parseInt( $('.pages').find('span:nth-last-of-type(1)').text().match(/\d+/g)[0] );
-      console.log( 'authorCount', authorCount );
       currentPage ++;
     } while ( currentPage <= 1  );//currentPage <= Math.ceil( authorCount / 10 )
   },
@@ -67,7 +86,7 @@ function* completeAuthorInfo( ctx, authorBaseInfo ) {
     let authorsDetailInfo = yield batchArr;
     yield ctx.service.author.authorInfoBatchSave( authorsDetailInfo );
   } catch (e) {
-    console.log( 'batchArr error', e );
+    console.log( 'batchArr error' );
   }
 }
 
@@ -76,16 +95,17 @@ function authorDealPageIntercept ( ctx, authorBase ) {
   return new Promise(function(resolve, reject) {
     authorBase.anecdote = [];
     //首先解析出作者的生卒年份
+    console.log( 'authorUrl', authorBase.authorUrl );
     ctx.curl( authorBase.authorUrl, {
       dataType: 'text',
-      timeout: 5000
+      timeout: 10000
     } ).then( authorPageResponse => {
       let authorDetailPageText = authorPageResponse.data;
       let $ = cheerio.load( authorDetailPageText ),
           anecdoteGroup = $('.sons[style=\'display:none;\']');
       anecdoteGroup.each( ( i, element ) => {
         let anecdoteTitle = $(element).find('.contyishang p:nth-of-type(1)').text().trim();
-        let anecdoteDetail = $(element).find('.contyishang p:nth-of-type(n+3)').text().trim();
+        let anecdoteDetail = $(element).find('.contyishang p:nth-of-type(n+3)').text().trim();//TO FIX
         authorBase.anecdote.push({
           anecdoteTitle: anecdoteTitle,
           anecdoteDetail: anecdoteDetail
@@ -93,6 +113,7 @@ function authorDealPageIntercept ( ctx, authorBase ) {
       });
       resolve( authorBase );
     }).catch( err => {
+      console.log( 'authorDealPageIntercept err' );
       reject( new Error(`${JSON.stringify(err)}`) );
     } );
   });
