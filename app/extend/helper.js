@@ -105,7 +105,7 @@ function authorDealPageIntercept ( ctx, authorBase ) {
           anecdoteGroup = $('.sons[style=\'display:none;\']');
       anecdoteGroup.each( ( i, element ) => {
         let anecdoteTitle = $(element).find('.contyishang p:nth-of-type(1)').text().trim();
-        let anecdoteDetail = $(element).find('.contyishang p:nth-of-type(n+3)').text().trim();//TO FIX
+        let anecdoteDetail = $(element).find('.contyishang .source').nextAll().text().trim();
         authorBase.anecdote.push({
           anecdoteTitle: anecdoteTitle,
           anecdoteDetail: anecdoteDetail
