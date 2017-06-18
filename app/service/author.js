@@ -9,33 +9,43 @@ module.exports = app => {
      * @param authorsDetailInfo
      */
     * authorInfoBatchSave( authorsDetailInfo ) {
-      // console.log( 'authorsDetailInfo', JSON.stringify( authorsDetailInfo ) );
-      this.poetsClient = app.mysql.get('poets');//这里一个类的共享变量，值得思考如何共享 TODO
-      /*
-      * 先插入作者表，得到id后再插入anecdote表
-      * */
+      let authorIds = [];
       for ( let authorInfo of authorsDetailInfo ) {
-        let authorId,
-            anecdotePromises = [];
+        let authorId = yield this.authorInfoSave( authorInfo );
+        authorIds.push( authorId );
+      }
+      return authorIds;
+    }
+
+    /**
+     * 单个作者信息的添加，先插入作者表，得到id后再插入anecdote表
+     * @param authorInfo
+     */
+    * authorInfoSave( authorInfo ) {
+      let authorId,
+          affectedRows,
+          anecdotePromises = [];
+      try {
+        let insertResult = yield this.insertAuthor( authorInfo );
+        authorId = insertResult.id;
+        affectedRows = insertResult.affectedRows;
+      } catch (e) {
+        console.log( 'insertAuthor err', JSON.stringify(e) );
+        return;
+      }
+      //有新增才会添加anecdote
+      if ( affectedRows !== 0 ) {
+        authorInfo.anecdote.forEach( (anecdote) => {
+          anecdotePromises.push( this.insertAnecdote( authorId, anecdote ) );
+        });
         try {
-          authorId = yield this.insertAuthor( authorInfo );
+          yield anecdotePromises;
         } catch (e) {
-          console.log( 'insertAuthor err', JSON.stringify(e) );
+          console.log( 'anecdotePromises err', JSON.stringify(e) );
           return;
         }
-        //有新增才会添加anecdote
-        if ( authorId !== 0 ) {
-          authorInfo.anecdote.forEach( (anecdote) => {
-            anecdotePromises.push( this.insertAnecdote( authorId, anecdote ) );
-          });
-          try {
-            yield anecdotePromises;
-          } catch (e) {
-            console.log( 'anecdotePromises err', JSON.stringify(e) );
-            return;
-          }
-        }
       }
+      return authorId;
     }
 
     /**
@@ -59,7 +69,7 @@ module.exports = app => {
           let periods = yield this.service.period.authorPeriod( birthYear, deathYear );
           periods.length > 0 ? periodId = periods[0].id : '';
         }
-        let result = yield this.poetsClient.insert('authors', {
+        let result = yield app.mysql.get('poets').insert('authors', {
           name: authorInfo.name,
           brief_introduction: authorInfo.briefIntroduction,
           author_img: authorInfo.authorImg,
@@ -73,14 +83,20 @@ module.exports = app => {
           source_url: authorInfo.authorUrl,
           http_date: moment().format("YYYY-MM-DD")
         });
-        return result.insertId;
+        return {
+          id: result.insertId,
+          affectedRows: result.affectedRows
+        };
       } else {
-        return 0;
+        return {
+          id: authorRowData.id,
+          affectedRows: 0
+        };
       }
     }
     //获取Author信息
     * getAuthor( params ) {
-      let authorResult = yield this.poetsClient.get( 'authors', params ); //this.app.mysql.get('poets')换成这种应该也不会错
+      let authorResult = yield app.mysql.get('poets').get( 'authors', params ); //this.app.mysql.get('poets')换成这种应该也不会错
       return authorResult;
     }
     /**
@@ -90,7 +106,7 @@ module.exports = app => {
      * @returns {Promise}
      */
     insertAnecdote( authorId, anecdote ) {
-      return this.poetsClient.insert('anecdotes', {
+      return app.mysql.get('poets').insert('anecdotes', {
         author_id: authorId,
         anecdote_title: anecdote.anecdoteTitle,
         anecdote_detail: anecdote.anecdoteDetail

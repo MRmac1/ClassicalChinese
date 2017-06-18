@@ -7,16 +7,118 @@
  * */
 
 "use strict";
+const _ = require('lodash');
+const moment = require('moment');
 
 module.exports = app => {
   class post extends app.Service {
-    * find(uid) {
-      const user = yield this.ctx.db.query(`select * from posts where id = ${id}`);
-      return user;
+    /**
+     * 插入文章表
+     * @param postInfo
+     * @returns {*}
+     */
+    * insertPost( postInfo ) {
+      //同一来源的同一id即视为相同的author
+      let checkParams = {
+        source_id: postInfo.sourceId,
+        source: postInfo.source
+      };
+      let postRowData = yield this.getPost( checkParams );
+      if ( _.isEmpty( postRowData ) ) {
+        let result = yield app.mysql.get('poets').insert('posts', {
+          author_id: postInfo.authorId,
+          post_title: postInfo.title,
+          post_text: postInfo.text,
+          post_star: postInfo.star,
+          type: postInfo.type,
+          source: postInfo.source,
+          source_id: postInfo.sourceId,
+          source_url: postInfo.postUrl,
+          http_date: moment().format("YYYY-MM-DD")
+        });
+        return {
+          id: result.insertId,
+          affectedRows: result.affectedRows
+        };
+      } else {
+        return {
+          id: postRowData.id,
+          affectedRows: 0
+        };
+      }
     }
-    * insertPost() {
-      //一个事务添加post相关信息
+
+    /**
+     * 查询post
+     * @param params
+     * @returns {*}
+     */
+    * getPost( params ) {
+      let postResult = yield app.mysql.get('poets').get( 'posts', params ); //this.app.mysql.get('poets')换成这种应该也不会错
+      return postResult;
     }
+
+    /**
+     * 批量存储post
+     * @param postsInfoArr
+     * @returns {Array}
+     */
+    * postInfoBatchSave( postsInfoArr ) {
+      let postIds = [];
+      for ( let postInfo of postsInfoArr ) {
+        let postId = yield this.postInfoSave( postInfo );
+        postIds.push( postId );
+      }
+      return postIds;
+    }
+
+    /**
+     * 添加文章，若是新增文章则添加文章释义
+     * @param postInfo
+     * @returns {*}
+     */
+    * postInfoSave( postInfo ) {
+      let postId,
+        affectedRows,
+        interceptPromises = [];
+      try {
+        let insertResult = yield this.insertPost( postInfo );
+        postId = insertResult.id;
+        affectedRows = insertResult.affectedRows;
+      } catch (e) {
+        console.log( 'insertPost err', JSON.stringify(e) );
+        return;
+      }
+      //有新增才会添加anecdote
+      if ( affectedRows !== 0 ) {
+        postInfo.intercepts.forEach( (intercept) => {
+          interceptPromises.push( this.insertIntercept( postId, intercept ) );
+        });
+        try {
+          yield interceptPromises;
+        } catch (e) {
+          console.log( 'interceptPromises err', JSON.stringify(e) );
+          return;
+        }
+      }
+      return postId;
+    }
+
+    /**
+     * 添加文章释义
+     * @param postId
+     * @param intercept
+     * @returns {*}
+     */
+    insertIntercept( postId, intercept ) {
+      //type值未确定，TODO
+      return app.mysql.get('poets').insert('postinterpretations', {
+        post_id: postId,
+        interpretation_name: intercept.interceptName,
+        interpretation_text: intercept.interceptText
+      });
+    }
+
   }
   return post;
 };

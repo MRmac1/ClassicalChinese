@@ -28,7 +28,8 @@ exports.view = {
 
 //定义常用变量
 exports.consts = {
-  GUSHIWEN: 1
+  GUSHIWEN: 1,
+  POET: 1
 };
 
 exports.middleware = [ 'cors' ];

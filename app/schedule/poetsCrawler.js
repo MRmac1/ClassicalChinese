@@ -27,7 +27,7 @@ module.exports = {
   },
 
   * task(ctx) {
-    yield ctx.helper.dealAuthorsList( `${GUSHIWENSHOST}/authors/Default.aspx` );
+    // yield ctx.helper.dealAuthorsList( `${GUSHIWENSHOST}/authors/Default.aspx` );
     yield ctx.helper.dealPostsList( `${GUSHIWENSHOST}/type.aspx` );
     ctx.app.cache = true;
   }

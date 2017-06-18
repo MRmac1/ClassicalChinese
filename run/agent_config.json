@@ -238,7 +238,8 @@
     ],
     "workerStartTimeout": 600000,
     "consts": {
-      "GUSHIWEN": 1
+      "GUSHIWEN": 1,
+      "POET": 1
     },
     "middleware": [
       "cors"
