@@ -32,4 +32,4 @@ exports.consts = {
   POET: 1
 };
 
-exports.middleware = [ 'cors' ];
+// exports.middleware = [ 'cors' ];

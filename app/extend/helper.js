@@ -37,7 +37,8 @@ module.exports = {
       yield interceptAuthorInfo.bind( this, $ );
       authorCount = parseInt( $('.pages').find('span:nth-last-of-type(1)').text().match(/\d+/g)[0] );
       currentPage ++;
-    } while ( currentPage <= 10  );//currentPage <= Math.ceil( authorCount / 10 )
+      this.sleep(1);//循环直接间隔1s
+    } while ( currentPage <= Math.ceil( authorCount / 10 )  );//currentPage <= Math.ceil( authorCount / 10 )
   },
   /**
    * 抓取古诗文网站的所有文章
@@ -63,11 +64,13 @@ module.exports = {
         //获取文章中不同的片段
         let postSection = $('.left > div:nth-child(2)'),
           interceptGroup = $('.sons[style=\'display:none;\']'),
-          authorSection = $('.left > .sonspic');
+          authorSection = $('.left > .sonspic'),
+          tagSection = postSection.find('.tag a');
         let postInfo = { authorId: 0, intercepts: [] };//存放一篇文章的所有信息
         postInfo.title = postSection.find('.cont h1').text().trim();
         postInfo.text = postSection.find('.cont .contson').text().trim();
         postInfo.star = postSection.find('.tool .good').text().trim();
+        postInfo.tags = [];
         postInfo.type = this.app.config.consts.POET;
         postInfo.source = this.app.config.consts.GUSHIWEN;
         postInfo.sourceId = postUrl.match(/\d+/g)[0];
@@ -97,6 +100,9 @@ module.exports = {
             postInfo.authorId = authorRowData.id;
           }
         }
+        tagSection.each( ( index, tag ) => {
+          postInfo.tags.push( $(tag).text() )
+        });
         interceptGroup.each( ( i, element ) => {
           let interceptName = $(element).find('.contyishang p:nth-of-type(1)').text().trim();
           let interceptText = $($(element).find('.contyishang').contents().splice(4)).text().trim();
@@ -123,7 +129,8 @@ module.exports = {
       yield interceptPost.bind( this, postsUrl );
       postCount = parseInt( $('.pages').find('span:nth-last-of-type(1)').text().match(/\d+/g)[0] );
       currentPage ++;
-    } while ( currentPage <= 10  );//currentPage <= Math.ceil( postCount / 10 )
+      this.sleep(1);//循环直接间隔1s
+    } while ( currentPage <= Math.ceil( postCount / 10 )  );//currentPage <= Math.ceil( postCount / 10 )
   },
   /**
    * 批量处理传染进来的authorBaseInfo数组，返回添加好的数组id
@@ -220,13 +227,17 @@ module.exports = {
       briefIntroduction: briefIntroduction
     };
     return authorBaseInfo;
+  },
+  /**
+   * 暂停函数
+   * @param second
+   * @returns {Promise}
+   */
+  sleep( second ) {
+    return new Promise( function(resolve, reject) {
+      setTimeout( () => {
+        resolve();
+      }, second * 1000 );
+    })
   }
 };
-
-
-
-
-/*
-查询作者所在朝代
-SELECT * from periods where (end_year BETWEEN 908 and 958) or (start_year BETWEEN 908 and 958) or ( start_year < 908 and end_year > 958 );
- * */

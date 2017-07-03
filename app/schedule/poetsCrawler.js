@@ -18,16 +18,16 @@ const util = require('util');
 * */
 
 module.exports = {
-  // 通过 schedule 属性来设置定时任务的执行间隔等配置     cron: '0 0 0 * * 7',//每个星期天运行一次
+  //每三个月一号运行一次
   schedule: {
-    interval: '100m',
-    type: 'worker', //随机一个work执行
-    immediate: true,
+    cron: '0 0 0 1 */3 *',
+    type: 'worker',
+    immediate: false,
     disabled: true
   },
 
   * task(ctx) {
-    // yield ctx.helper.dealAuthorsList( `${GUSHIWENSHOST}/authors/Default.aspx` );
+    yield ctx.helper.dealAuthorsList( `${GUSHIWENSHOST}/authors/Default.aspx` );
     yield ctx.helper.dealPostsList( `${GUSHIWENSHOST}/type.aspx` );
     ctx.app.cache = true;
   }

@@ -80,7 +80,7 @@ module.exports = app => {
     * postInfoSave( postInfo ) {
       let postId,
         affectedRows,
-        interceptPromises = [];
+        promises = [];
       try {
         let insertResult = yield this.insertPost( postInfo );
         postId = insertResult.id;
@@ -92,12 +92,18 @@ module.exports = app => {
       //有新增才会添加anecdote
       if ( affectedRows !== 0 ) {
         postInfo.intercepts.forEach( (intercept) => {
-          interceptPromises.push( this.insertIntercept( postId, intercept ) );
+          promises.push( this.insertIntercept( postId, intercept ) );
         });
+
+        for ( let tag of postInfo.tags ) {
+          let tagResult = yield this.service.tag.insertTag( tag );
+          promises.push( this.insertPostTag( postId, tagResult.id ) );
+        }
+
         try {
-          yield interceptPromises;
+          yield promises;
         } catch (e) {
-          console.log( 'interceptPromises err', JSON.stringify(e) );
+          console.log( 'promises err', JSON.stringify(e) );
           return;
         }
       }
@@ -116,6 +122,19 @@ module.exports = app => {
         post_id: postId,
         interpretation_name: intercept.interceptName,
         interpretation_text: intercept.interceptText
+      });
+    }
+
+    /**
+     *
+     * @param postId
+     * @param tagId
+     * @returns {*}
+     */
+    insertPostTag( postId, tagId ) {
+      return app.mysql.get('poets').insert('posttags', {
+        post_id: postId,
+        tag_id: tagId
       });
     }
 

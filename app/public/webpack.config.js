@@ -1,22 +1,36 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
-const webpack = require('webpack'); //to access built-in plugins
-const path = require('path');
+/* eslint strict: 0 */
+'use strict';
 
-const config = {
-  entry: './path/to/my/entry/file.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'my-first-webpack.bundle.js'
-  },
+const path = require('path');
+const webpack = require('webpack');
+const webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
+let argv = require('minimist')(process.argv.slice(2));
+const isWeb = (argv && argv.target === 'web');
+console.log( argv );
+const output = (isWeb ? 'build/web' : 'build/electron');
+
+let options ={
   module: {
-    rules: [
-      {test: /\.(js|jsx)$/, use: 'babel-loader'}
-    ]
+    loaders: [{
+      test: /\.jsx?$/,
+      loaders: [],
+      exclude: /node_modules/,
+    }]
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
-    new HtmlWebpackPlugin({template: './src/index.html'})
+  output: {
+    path: path.join(__dirname, output),
+    publicPath: path.join(__dirname, 'src'),
+    filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    mainFields: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'],
+  },
+  entry: [
+    './src/index',
   ]
 };
 
-module.exports = config;
+options.target = webpackTargetElectronRenderer(options);
+
+module.exports = options;
