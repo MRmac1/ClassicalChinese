@@ -22,8 +22,7 @@ module.exports = {
   schedule: {
     cron: '0 0 0 1 */3 *',
     type: 'worker',
-    immediate: false,
-    disabled: true
+    immediate: true
   },
 
   * task(ctx) {

@@ -37,8 +37,8 @@ module.exports = {
       yield interceptAuthorInfo.bind( this, $ );
       authorCount = parseInt( $('.pages').find('span:nth-last-of-type(1)').text().match(/\d+/g)[0] );
       currentPage ++;
-      this.sleep(1);//循环直接间隔1s
-    } while ( currentPage <= Math.ceil( authorCount / 10 )  );//currentPage <= Math.ceil( authorCount / 10 )
+      yield this.sleep(1);//循环直接间隔1s
+    } while ( currentPage <= 1  );//currentPage <= Math.ceil( authorCount / 10 )
   },
   /**
    * 抓取古诗文网站的所有文章
@@ -56,7 +56,7 @@ module.exports = {
         try {
           postPageResponse = yield this.ctx.curl( postUrl, CURLOPTIONS );
         } catch (e) {
-          console.log( 'curl timeout', e, postUrl );
+          // console.log( 'curl timeout', e, postUrl );
           continue;
         }
         postDetailPageText = postPageResponse.data;
@@ -92,7 +92,7 @@ module.exports = {
             let authorBaseInfo = this.getAuthorBaseInfo( authorSection );
             try {
               let authorIds = yield this.completeAuthorInfo( [authorBaseInfo] );
-              postInfo.authorId = authorIds[0];
+              authorIds.length > 0 ? postInfo.authorId = authorIds[0] : '';
             } catch (e) {
               console.log( 'completeAuthorInfo err', e );
             }
@@ -129,8 +129,8 @@ module.exports = {
       yield interceptPost.bind( this, postsUrl );
       postCount = parseInt( $('.pages').find('span:nth-last-of-type(1)').text().match(/\d+/g)[0] );
       currentPage ++;
-      this.sleep(1);//循环直接间隔1s
-    } while ( currentPage <= Math.ceil( postCount / 10 )  );//currentPage <= Math.ceil( postCount / 10 )
+      yield this.sleep(1);//循环直接间隔1s
+    } while ( currentPage <= 1  );//currentPage <= Math.ceil( postCount / 10 )
   },
   /**
    * 批量处理传染进来的authorBaseInfo数组，返回添加好的数组id
@@ -143,13 +143,18 @@ module.exports = {
       item.authorUrl = HOST + item.authorUrl;
       batchArr.push( this.authorDealPageIntercept( item ))
     });
-    let authorsDetailInfo = yield batchArr;
     try {
-      let authorIds = yield this.ctx.service.author.authorInfoBatchSave( authorsDetailInfo );
-      return authorIds;
+      let authorsDetailInfo = yield batchArr;
+      try {
+        let authorIds = yield this.ctx.service.author.authorInfoBatchSave( authorsDetailInfo );
+        return authorIds;
+      } catch (e) {
+        console.log( 'completeAuthorInfo service error', JSON.stringify(e) );
+      }
     } catch (e) {
-      console.log( 'completeAuthorInfo service error', JSON.stringify(e) );
+      console.log( 'authorsDetailInfo batch error'  );
     }
+    return [];
   },
   /**
    * 根据authorBaseInfo填充author的其他信息
@@ -176,7 +181,7 @@ module.exports = {
           });
           resolve( authorBase );
         }).catch( err => {
-        console.log( 'authorDealPageIntercept err' );
+        console.log( 'authorDealPageIntercept err', JSON.stringify(err) );
         reject( new Error(`${JSON.stringify(err)}`) );
       } );
     });
