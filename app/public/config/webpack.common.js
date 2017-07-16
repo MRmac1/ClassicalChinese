@@ -27,7 +27,19 @@ let options ={
         use: [
           'file-loader'
         ]
-      }
+      },
+      {
+       test: /\.js?$/,
+       exclude: /node_modules/,
+       use: [
+         {
+           loader: 'babel-loader',
+           options: {
+             presets: ['react', 'es2015']
+           }
+         }
+       ]
+     }
     ]
   },
   plugins: [

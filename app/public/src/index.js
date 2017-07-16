@@ -1,15 +1,20 @@
-import './style.css'
-import Icon from './baima.jpg'
+// import './style.css'
+// import Icon from './baima.jpg'
+//
+// function getComponent() {
+//   // Lodash, now imported by this script
+//   return import( /* webpackChunkName: "lodash" */ 'lodash' ).then( _ => {
+//     let element = document.createElement('div');
+//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+//     return element;
+//   }).catch(error => 'An error occurred while loading the component');
+// }
+//
+// getComponent().then(component => {
+//   document.body.appendChild(component);
+// });
 
-function getComponent() {
-  // Lodash, now imported by this script
-  return import( /* webpackChunkName: "lodash" */ 'lodash' ).then( _ => {
-    let element = document.createElement('div');
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    return element;
-  }).catch(error => 'An error occurred while loading the component');
-}
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-getComponent().then(component => {
-  document.body.appendChild(component);
-});
+ReactDOM.render( <h1>Hello, world!</h1>, document.body );
