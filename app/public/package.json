@@ -6,14 +6,29 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "electron": "webpack && electron .",
-    "web": "webpack --target web && webpack-dev-server --target web"
+    "web": "webpack --target web && webpack-dev-server --target web",
+    "dev": "webpack-dev-server --env=dev --open",
+    "build:dev": "webpack --env=dev --progress --profile --colors",
+    "build:prod": "webpack --env=prod --progress --profile --colors"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.16",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
     "is-electron-renderer": "^2.0.1",
     "minimist": "^1.2.0",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.2.0",
+    "webpack-dev-server": "^2.5.1",
+    "webpack-merge": "^4.1.0",
     "webpack-target-electron-renderer": "^0.4.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
   }
 }
