@@ -10,8 +10,8 @@
 
 module.exports = app => {
   class period extends app.Service {
-    * authorPeriod( birthYear, deathYear ) {
-      let periodsInfo = yield app.mysql.get('poets').query( `SELECT id from periods where (end_year BETWEEN ${birthYear} and ${deathYear}) or (start_year BETWEEN ${birthYear} and ${deathYear}) or ( start_year < ${birthYear} and end_year > ${deathYear} ) and type = 1`  );
+    async authorPeriod( birthYear, deathYear ) {
+      let periodsInfo = await app.mysql.get('poets').query( `SELECT id from periods where (end_year BETWEEN ${birthYear} and ${deathYear}) or (start_year BETWEEN ${birthYear} and ${deathYear}) or ( start_year < ${birthYear} and end_year > ${deathYear} ) and type = 1`  );
       return periodsInfo;
     }
   }

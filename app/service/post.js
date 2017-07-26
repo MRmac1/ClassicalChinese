@@ -17,15 +17,15 @@ module.exports = app => {
      * @param postInfo
      * @returns {*}
      */
-    * insertPost( postInfo ) {
+    async insertPost( postInfo ) {
       //同一来源的同一id即视为相同的author
       let checkParams = {
         source_id: postInfo.sourceId,
         source: postInfo.source
       };
-      let postRowData = yield this.getPost( checkParams );
+      let postRowData = await this.getPost( checkParams );
       if ( _.isEmpty( postRowData ) ) {
-        let result = yield app.mysql.get('poets').insert('posts', {
+        let result = await app.mysql.get('poets').insert('posts', {
           author_id: postInfo.authorId,
           post_title: postInfo.title,
           post_text: postInfo.text,
@@ -53,8 +53,8 @@ module.exports = app => {
      * @param params
      * @returns {*}
      */
-    * getPost( params ) {
-      let postResult = yield app.mysql.get('poets').get( 'posts', params ); //this.app.mysql.get('poets')换成这种应该也不会错
+    async getPost( params ) {
+      let postResult = await app.mysql.get('poets').get( 'posts', params ); //this.app.mysql.get('poets')换成这种应该也不会错
       return postResult;
     }
 
@@ -63,10 +63,10 @@ module.exports = app => {
      * @param postsInfoArr
      * @returns {Array}
      */
-    * postInfoBatchSave( postsInfoArr ) {
+    async postInfoBatchSave( postsInfoArr ) {
       let postIds = [];
       for ( let postInfo of postsInfoArr ) {
-        let postId = yield this.postInfoSave( postInfo );
+        let postId = await this.postInfoSave( postInfo );
         postIds.push( postId );
       }
       return postIds;
@@ -77,12 +77,12 @@ module.exports = app => {
      * @param postInfo
      * @returns {*}
      */
-    * postInfoSave( postInfo ) {
+    async postInfoSave( postInfo ) {
       let postId,
         affectedRows,
         promises = [];
       try {
-        let insertResult = yield this.insertPost( postInfo );
+        let insertResult = await this.insertPost( postInfo );
         postId = insertResult.id;
         affectedRows = insertResult.affectedRows;
       } catch (e) {
@@ -96,12 +96,12 @@ module.exports = app => {
         });
 
         for ( let tag of postInfo.tags ) {
-          let tagResult = yield this.service.tag.insertTag( tag );
+          let tagResult = await this.service.tag.insertTag( tag );
           promises.push( this.insertPostTag( postId, tagResult.id ) );
         }
 
         try {
-          yield promises;
+          await promises;
         } catch (e) {
           console.log( 'promises err', JSON.stringify(e) );
           return;

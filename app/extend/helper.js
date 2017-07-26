@@ -18,43 +18,43 @@ module.exports = {
    * 抓取古诗文网站的所有作者
    * @param authorUrl
    */
-  * dealAuthorsList ( authorUrl ) {
+  async dealAuthorsList ( authorUrl ) {
     let currentPage = 1, authorCount = 0;//默认初始页
-    let interceptAuthorInfo = function* ( $ ) {
+    let interceptAuthorInfo = async function ( $ ) {
       let onePageAuthors = [];
       $('.sonspic').each( ( i, element ) => {
         let authorBaseInfo = this.getAuthorBaseInfo( $(element) );
         onePageAuthors.push( authorBaseInfo );
       });
-      yield this.completeAuthorInfo( onePageAuthors );
+      console.log( 'onePageAuthors', onePageAuthors );
+      await this.completeAuthorInfo( onePageAuthors );
     };
     do {
       let currentPageUrl = `${authorUrl}?p=${currentPage}&c=`;
-      // console.log( 'currentPageUrl', currentPageUrl );
-      let authorListResponse = yield this.ctx.curl( currentPageUrl, CURLOPTIONS );
+      let authorListResponse = await this.ctx.curl( currentPageUrl, CURLOPTIONS );
       let authorPageText = authorListResponse.data;
       let $ = cheerio.load( authorPageText );
-      yield interceptAuthorInfo.bind( this, $ );
+      await interceptAuthorInfo.bind( this, $ );
       authorCount = parseInt( $('.pages').find('span:nth-last-of-type(1)').text().match(/\d+/g)[0] );
       currentPage ++;
-      yield this.sleep(1);//循环直接间隔1s
+      await this.sleep(1);//循环直接间隔1s
     } while ( currentPage <= 1  );//currentPage <= Math.ceil( authorCount / 10 )
   },
   /**
    * 抓取古诗文网站的所有文章
    * @param postUrl
    */
-  * dealPostsList ( postUrl ) {
+  async dealPostsList ( postUrl ) {
     let currentPage = 1, postCount = 0;//默认初始页
 
     //解析文章单页，包含原文，interpretation(译注信息)，作者信息(有可能无)
-    let interceptPost = function* ( postsUrl ) {
+    let interceptPost = async function( postsUrl ) {
       let postsInfoArr = [];
 
       for ( let postUrl of postsUrl ) {
         let postPageResponse, postDetailPageText;
         try {
-          postPageResponse = yield this.ctx.curl( postUrl, CURLOPTIONS );
+          postPageResponse = await this.ctx.curl( postUrl, CURLOPTIONS );
         } catch (e) {
           // console.log( 'curl timeout', e, postUrl );
           continue;
@@ -83,7 +83,7 @@ module.exports = {
           };
           let authorRowData;
           try {
-            authorRowData = yield this.ctx.service.author.getAuthor( checkParams );
+            authorRowData = await this.ctx.service.author.getAuthor( checkParams );
           } catch (e) {
             console.log( 'authorRowData', e );
           }
@@ -91,7 +91,7 @@ module.exports = {
           if ( _.isEmpty( authorRowData ) ) {
             let authorBaseInfo = this.getAuthorBaseInfo( authorSection );
             try {
-              let authorIds = yield this.completeAuthorInfo( [authorBaseInfo] );
+              let authorIds = await this.completeAuthorInfo( [authorBaseInfo] );
               authorIds.length > 0 ? postInfo.authorId = authorIds[0] : '';
             } catch (e) {
               console.log( 'completeAuthorInfo err', e );
@@ -113,11 +113,11 @@ module.exports = {
         });
         postsInfoArr.push( postInfo );
       }
-      yield this.ctx.service.post.postInfoBatchSave( postsInfoArr );
+      await this.ctx.service.post.postInfoBatchSave( postsInfoArr );
     };
     do {
       let currentPageUrl = `${postUrl}?p=${currentPage}`;
-      let postListResponse = yield this.ctx.curl( currentPageUrl, CURLOPTIONS );
+      let postListResponse = await this.ctx.curl( currentPageUrl, CURLOPTIONS );
       let postPageText = postListResponse.data;
       let $ = cheerio.load( postPageText );
       //解析出十个文章的url，并并发解析存db
@@ -126,17 +126,17 @@ module.exports = {
         let postUrl = HOST + $(element).find('.cont p:nth-of-type(1) a').attr('href');
         postsUrl.push( postUrl );
       });
-      yield interceptPost.bind( this, postsUrl );
+      await interceptPost.bind( this, postsUrl );
       postCount = parseInt( $('.pages').find('span:nth-last-of-type(1)').text().match(/\d+/g)[0] );
       currentPage ++;
-      yield this.sleep(1);//循环直接间隔1s
+      await this.sleep(1);//循环直接间隔1s
     } while ( currentPage <= 1  );//currentPage <= Math.ceil( postCount / 10 )
   },
   /**
    * 批量处理传染进来的authorBaseInfo数组，返回添加好的数组id
    * @param authorBaseInfo
    */
-  * completeAuthorInfo( authorBaseInfo ) {
+  async completeAuthorInfo( authorBaseInfo ) {
     let batchArr = [];
     //替换authorUrl，并组成promises数组
     authorBaseInfo.forEach( ( item ) => {
@@ -144,9 +144,11 @@ module.exports = {
       batchArr.push( this.authorDealPageIntercept( item ))
     });
     try {
-      let authorsDetailInfo = yield batchArr;
+      let authorsDetailInfo = await batchArr;
       try {
-        let authorIds = yield this.ctx.service.author.authorInfoBatchSave( authorsDetailInfo );
+        console.log( 'authorsDetailInfo', authorsDetailInfo );
+        let authorIds = await this.ctx.service.author.authorInfoBatchSave( authorsDetailInfo );
+        console.log( 'authorIds', authorIds );
         return authorIds;
       } catch (e) {
         console.log( 'completeAuthorInfo service error', JSON.stringify(e) );
@@ -161,9 +163,9 @@ module.exports = {
    * @param authorBase
    * @returns {Promise}
    */
-  authorDealPageIntercept( authorBase ) {
+  async authorDealPageIntercept( authorBase ) {
     let that = this;//TO FIX
-    return new Promise(function(resolve, reject) {
+    await new Promise(function(resolve, reject) {
       authorBase.anecdote = [];
       //首先解析出作者的生卒年份
       that.ctx.curl( authorBase.authorUrl, CURLOPTIONS )
@@ -238,8 +240,8 @@ module.exports = {
    * @param second
    * @returns {Promise}
    */
-  sleep( second ) {
-    return new Promise( function(resolve, reject) {
+  async sleep( second ) {
+    await new Promise( function(resolve, reject) {
       setTimeout( () => {
         resolve();
       }, second * 1000 );

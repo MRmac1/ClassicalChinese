@@ -79,12 +79,6 @@
     "helper": {
       "shtml": {}
     },
-    "development": {
-      "watchDirs": [],
-      "ignoreDirs": [],
-      "fastReady": true,
-      "reloadOnDebug": true
-    },
     "logrotator": {
       "filesRotateByHour": null,
       "filesRotateBySize": null,
@@ -111,7 +105,7 @@
     },
     "view": {
       "root": "G:\\code\\demo\\ClassicalChinese\\app\\view",
-      "cache": false,
+      "cache": true,
       "defaultExtension": ".html",
       "defaultViewEngine": "ejs",
       "mapping": {
@@ -138,13 +132,13 @@
     },
     "ejs": {
       "root": "G:\\code\\demo\\ClassicalChinese\\app\\view",
-      "cache": false,
+      "cache": true,
       "debug": false,
       "compileDebug": true,
       "delimiter": null,
       "strict": false
     },
-    "env": "local",
+    "env": "unittest",
     "name": "ClassicalChinese",
     "keys": "<String len: 30>",
     "proxy": false,
@@ -214,18 +208,16 @@
     "logger": {
       "dir": "G:\\code\\demo\\ClassicalChinese\\logs\\ClassicalChinese",
       "encoding": "utf8",
-      "env": "local",
+      "env": "unittest",
       "level": "INFO",
-      "consoleLevel": "INFO",
+      "consoleLevel": "WARN",
       "outputJSON": false,
-      "buffer": true,
+      "buffer": false,
       "appLogName": "ClassicalChinese-web.log",
       "coreLogName": "egg-web.log",
       "agentLogName": "egg-agent.log",
       "errorLogName": "common-error.log",
-      "coreLogger": {
-        "consoleLevel": "WARN"
-      },
+      "coreLogger": {},
       "type": "agent"
     },
     "httpclient": {
@@ -327,21 +319,6 @@
       "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-security",
       "version": "1.10.0"
     },
-    "development": {
-      "enable": true,
-      "package": "egg-development",
-      "name": "development",
-      "dependencies": [
-        "watcher"
-      ],
-      "optionalDependencies": [],
-      "env": [
-        "local"
-      ],
-      "from": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg\\config\\plugin.js",
-      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-development",
-      "version": "1.3.0"
-    },
     "schedule": {
       "enable": true,
       "package": "egg-schedule",
@@ -424,6 +401,15 @@
       "from": "G:\\code\\demo\\ClassicalChinese\\config\\plugin.js",
       "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-view-ejs",
       "version": "1.1.0"
+    },
+    "egg-mock": {
+      "enable": true,
+      "path": "G:\\code\\demo\\ClassicalChinese\\node_modules\\egg-mock",
+      "name": "egg-mock",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "version": "3.7.1"
     }
   }
 }
