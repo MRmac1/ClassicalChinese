@@ -9,15 +9,8 @@ const webpack = require('webpack');
 const CommonConfig = require('./webpack.common.js');
 const path = require('path');
 
-const output = path.join(__dirname, '../build');
-
 module.exports = Merge(CommonConfig, {
   devtool: "cheap-eval-source-map",
-  devServer: {
-    hot: true, // 告诉 dev-server 我们在使用 HMR
-    contentBase: path.resolve(__dirname, 'build'),
-    publicPath: '/'
-  },
   module: {
     rules: [
       {
@@ -29,4 +22,4 @@ module.exports = Merge(CommonConfig, {
   plugins: [
     new webpack.HotModuleReplacementPlugin() // 启用 HMR
   ]
-})
+});

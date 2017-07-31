@@ -80,8 +80,7 @@ module.exports = app => {
           author_stars: 5,
           source_id: authorInfo.sourceId,
           source: authorInfo.source,
-          source_url: authorInfo.authorUrl,
-          http_date: moment().format("YYYY-MM-DD")
+          source_url: authorInfo.authorUrl
         });
         return {
           id: result.insertId,

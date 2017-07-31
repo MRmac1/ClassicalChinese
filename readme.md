@@ -23,3 +23,5 @@ Or, if you don't want/need a background service you can just run:
 ==> Summary
 🍺  /usr/local/Cellar/nginx/1.12.0_1: 23 files, 1MB
 ```
+
+egg-bin test --timeout=6000000 

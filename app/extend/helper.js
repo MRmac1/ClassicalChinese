@@ -37,15 +37,16 @@ module.exports = {
       yield interceptAuthorInfo.bind( this, $ );
       authorCount = parseInt( $('.pages').find('span:nth-last-of-type(1)').text().match(/\d+/g)[0] );
       currentPage ++;
+      console.log( 'currentPage', currentPage );
       yield this.sleep(1);//循环直接间隔1s
-    } while ( currentPage <= 1  );//currentPage <= Math.ceil( authorCount / 10 )
+    } while ( currentPage <= Math.ceil( authorCount / 10 )  );//currentPage <= Math.ceil( authorCount / 10 )
   },
   /**
    * 抓取古诗文网站的所有文章
    * @param postUrl
    */
   * dealPostsList ( postUrl ) {
-    let currentPage = 1, postCount = 0;//默认初始页
+    let currentPage = 370, postCount = 0;//默认初始页
 
     //解析文章单页，包含原文，interpretation(译注信息)，作者信息(有可能无)
     let interceptPost = function* ( postsUrl ) {
@@ -104,8 +105,8 @@ module.exports = {
           postInfo.tags.push( $(tag).text() )
         });
         interceptGroup.each( ( i, element ) => {
-          let interceptName = $(element).find('.contyishang p:nth-of-type(1)').text().trim();
-          let interceptText = $($(element).find('.contyishang').contents().splice(4)).text().trim();
+          let interceptName = $(element).find('.contyishang p:nth-of-type(1)').text().trim() || '';
+          let interceptText = $($(element).find('.contyishang').contents().splice(4)).text().trim() || '';
           postInfo.intercepts.push({
             interceptName: interceptName,
             interceptText: interceptText
@@ -128,9 +129,10 @@ module.exports = {
       });
       yield interceptPost.bind( this, postsUrl );
       postCount = parseInt( $('.pages').find('span:nth-last-of-type(1)').text().match(/\d+/g)[0] );
+      console.log( 'currentPage', currentPage );
       currentPage ++;
       yield this.sleep(1);//循环直接间隔1s
-    } while ( currentPage <= 1  );//currentPage <= Math.ceil( postCount / 10 )
+    } while ( currentPage <= Math.ceil( postCount / 10 )  );//currentPage <= Math.ceil( postCount / 10 )
   },
   /**
    * 批量处理传染进来的authorBaseInfo数组，返回添加好的数组id

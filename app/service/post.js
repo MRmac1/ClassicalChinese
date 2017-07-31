@@ -33,8 +33,7 @@ module.exports = app => {
           type: postInfo.type,
           source: postInfo.source,
           source_id: postInfo.sourceId,
-          source_url: postInfo.postUrl,
-          http_date: moment().format("YYYY-MM-DD")
+          source_url: postInfo.postUrl
         });
         return {
           id: result.insertId,
