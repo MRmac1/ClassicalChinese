@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "egg-bin test",
+    "test": "egg-bin test --timeout=6000000",
     "dev": "egg-bin dev",
     "start": "EGG_SERVER_ENV=prod npm start"
   },

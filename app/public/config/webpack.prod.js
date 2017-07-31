@@ -51,8 +51,3 @@ module.exports = Merge(CommonConfig, {
     })
   ]
 });
-/*
-// new webpack.optimize.CommonsChunkPlugin({
-//   name: 'common' // 提取出公共的bundle
-// }),
-*/

@@ -22,12 +22,13 @@ module.exports = {
   schedule: {
     cron: '0 0 0 1 */3 *',
     type: 'worker',
-    immediate: true
+    immediate: false,
+    disable: true
   },
 
-  async task(ctx) {
-    await ctx.helper.dealAuthorsList( `${GUSHIWENSHOST}/authors/Default.aspx` );
-    await ctx.helper.dealPostsList( `${GUSHIWENSHOST}/type.aspx` );
+  * task(ctx) {
+    // yield ctx.helper.dealAuthorsList( `${GUSHIWENSHOST}/authors/Default.aspx` );
+    // yield ctx.helper.dealPostsList( `${GUSHIWENSHOST}/type.aspx` );
     ctx.app.cache = true;
   }
 };

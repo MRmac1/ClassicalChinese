@@ -24,8 +24,8 @@ Or, if you don't want/need a background service you can just run:
 🍺  /usr/local/Cellar/nginx/1.12.0_1: 23 files, 1MB
 ```
 
-egg 框架使用心得
-
 `schedule`
 
 1. timeout的设置
+egg-bin test --timeout=6000000 
+
