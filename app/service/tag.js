@@ -17,13 +17,13 @@ module.exports = app => {
      * @param tagInfo
      * @returns {*}
      */
-    async insertTag( tagName ) {
+    * insertTag( tagName ) {
       let params = {
         tag_name: tagName
       };
-      let tagRowData = await this.getTag( params );
+      let tagRowData = yield this.getTag( params );
       if ( _.isEmpty( tagRowData ) ) {
-        let result = await app.mysql.get('poets').insert('tags', {
+        let result = yield app.mysql.get('poets').insert('tags', {
           tag_name: tagName
         });
         return {
@@ -43,8 +43,8 @@ module.exports = app => {
      * @param params
      * @returns {*}
      */
-    async getTag( params ) {
-      let postResult = await app.mysql.get('poets').get( 'tags', params );
+    * getTag( params ) {
+      let postResult = yield app.mysql.get('poets').get( 'tags', params );
       return postResult;
     }
   }

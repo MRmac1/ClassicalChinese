@@ -9,6 +9,10 @@ module.exports = {
     enable: true,
     package: 'egg-view-ejs',
   },
+  validate: {
+    enable: true,
+    package: 'egg-validate'
+  },
   static: {
     enable: true
   }

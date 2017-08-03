@@ -8,10 +8,10 @@ module.exports = app => {
      * 批量添加用户
      * @param authorsDetailInfo
      */
-    async authorInfoBatchSave( authorsDetailInfo ) {
+    * authorInfoBatchSave( authorsDetailInfo ) {
       let authorIds = [];
       for ( let authorInfo of authorsDetailInfo ) {
-        let authorId = await this.authorInfoSave( authorInfo );
+        let authorId = yield this.authorInfoSave( authorInfo );
         authorIds.push( authorId );
       }
       return authorIds;
@@ -21,12 +21,12 @@ module.exports = app => {
      * 单个作者信息的添加，先插入作者表，得到id后再插入anecdote表
      * @param authorInfo
      */
-    async authorInfoSave( authorInfo ) {
+    * authorInfoSave( authorInfo ) {
       let authorId,
           affectedRows,
           anecdotePromises = [];
       try {
-        let insertResult = await this.insertAuthor( authorInfo );
+        let insertResult = yield this.insertAuthor( authorInfo );
         authorId = insertResult.id;
         affectedRows = insertResult.affectedRows;
       } catch (e) {
@@ -39,7 +39,7 @@ module.exports = app => {
           anecdotePromises.push( this.insertAnecdote( authorId, anecdote ) );
         });
         try {
-          await anecdotePromises;
+          yield anecdotePromises;
         } catch (e) {
           console.log( 'anecdotePromises err', JSON.stringify(e) );
           return;
@@ -53,23 +53,23 @@ module.exports = app => {
      * @param authorInfo
      * @returns {Number}
      */
-    async insertAuthor( authorInfo ) {
+    * insertAuthor( authorInfo ) {
       //同一来源的同一id即视为相同的author
       let checkParams = {
         source_id: authorInfo.sourceId,
         source: authorInfo.source
       };
-      let authorRowData = await this.getAuthor( checkParams );
+      let authorRowData = yield this.getAuthor( checkParams );
       if ( _.isEmpty( authorRowData ) ) {
         //不为空，先获取period_id
         let birthYear = _.isNumber( authorInfo.birthYear ) ? authorInfo.birthYear : '不详',
             deathYear = _.isNumber( authorInfo.deathYear ) ? authorInfo.deathYear : '不详',
             periodId = 0;
         if ( _.isNumber( birthYear ) && _.isNumber( deathYear ) ) {
-          let periods = await this.service.period.authorPeriod( birthYear, deathYear );
+          let periods = yield this.service.period.authorPeriod( birthYear, deathYear );
           periods.length > 0 ? periodId = periods[0].id : '';
         }
-        let result = await app.mysql.get('poets').insert('authors', {
+        let result = yield app.mysql.get('poets').insert('authors', {
           name: authorInfo.name,
           brief_introduction: authorInfo.briefIntroduction,
           author_img: authorInfo.authorImg,
@@ -94,8 +94,8 @@ module.exports = app => {
       }
     }
     //获取Author信息
-    async getAuthor( params ) {
-      let authorResult = await app.mysql.get('poets').get( 'authors', params ); //this.app.mysql.get('poets')换成这种应该也不会错
+    * getAuthor( params ) {
+      let authorResult = yield app.mysql.get('poets').get( 'authors', params ); //this.app.mysql.get('poets')换成这种应该也不会错
       return authorResult;
     }
     /**

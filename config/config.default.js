@@ -36,5 +36,4 @@ module.exports = appInfo => {
       POET: 1
     }
   }
-}
-// exports.middleware = [ 'cors' ];
+};

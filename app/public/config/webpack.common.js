@@ -13,8 +13,7 @@ const listEntryFile = path.join(__dirname, '../src/list.js');
 
 let options ={
   entry: {
-    home: homeEntryFile,
-    list: listEntryFile
+    home: homeEntryFile
   },
   output: {
     path: output,
@@ -35,7 +34,7 @@ let options ={
          {
            loader: 'babel-loader',
            options: {
-             presets: ['react', 'es2015']
+             presets: ['react', 'es2015', 'stage-0']
            }
          }
        ]
@@ -50,7 +49,7 @@ let options ={
        name: 'common'
     }),
     new HtmlWebpackPlugin({
-      title: 'Output Management'
+      template: path.join(__dirname, '../src/index.html')
     })
   ]
 };

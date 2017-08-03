@@ -18,7 +18,7 @@ module.exports = {
    * 抓取古诗文网站的所有作者
    * @param authorUrl
    */
-  *dealAuthorsList ( authorUrl ) {
+  * dealAuthorsList ( authorUrl ) {
     let currentPage = 1, authorCount = 0;//默认初始页
     let interceptAuthorInfo = function* ( $ ) {
       let onePageAuthors = [];
@@ -162,7 +162,7 @@ module.exports = {
    * @param authorBase
    * @returns {Promise}
    */
-  *authorDealPageIntercept( authorBase ) {
+  * authorDealPageIntercept( authorBase ) {
     let that = this;//TO FIX
     yield new Promise(function(resolve, reject) {
       authorBase.anecdote = [];
@@ -239,7 +239,7 @@ module.exports = {
    * @param second
    * @returns {Promise}
    */
-  *sleep( second ) {
+  * sleep( second ) {
     yield new Promise( function(resolve, reject) {
       setTimeout( () => {
         resolve();

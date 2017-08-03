@@ -1,0 +1,263 @@
+{
+  "mysql": {
+    "clients": {
+      "poets": {
+        "database": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js"
+      }
+    },
+    "default": {
+      "host": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+      "port": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+      "user": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+      "password": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+      "database": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-mysql/config/config.default.js",
+      "connectionLimit": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-mysql/config/config.default.js"
+    },
+    "app": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+    "agent": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js"
+  },
+  "keys": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+  "static": {
+    "dir": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+    "prefix": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-static/config/config.default.js",
+    "dynamic": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-static/config/config.default.js",
+    "preload": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-static/config/config.default.js",
+    "buffer": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-static/config/config.default.js",
+    "maxFiles": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-static/config/config.default.js"
+  },
+  "view": {
+    "defaultViewEngine": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+    "mapping": {
+      ".ejs": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+      ".html": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js"
+    },
+    "root": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view/config/config.default.js",
+    "cache": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view/config/config.local.js",
+    "defaultExtension": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view/config/config.default.js"
+  },
+  "consts": {
+    "GUSHIWEN": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js",
+    "POET": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/config/config.default.js"
+  },
+  "onerror": {
+    "errorPageUrl": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-onerror/config/config.default.js",
+    "appErrorFilter": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-onerror/config/config.default.js"
+  },
+  "session": {
+    "maxAge": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-session/config/config.default.js",
+    "key": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-session/config/config.default.js",
+    "httpOnly": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-session/config/config.default.js",
+    "encrypt": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-session/config/config.default.js"
+  },
+  "i18n": {
+    "defaultLocale": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-i18n/config/config.default.js",
+    "dirs": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-i18n/config/config.default.js",
+    "queryField": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-i18n/config/config.default.js",
+    "cookieField": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-i18n/config/config.default.js",
+    "cookieMaxAge": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-i18n/config/config.default.js"
+  },
+  "watcher": {
+    "type": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-watcher/config/config.local.js",
+    "eventSources": {
+      "default": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-watcher/config/config.default.js",
+      "development": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-watcher/config/config.default.js"
+    }
+  },
+  "multipart": {
+    "autoFields": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-multipart/config/config.default.js",
+    "defaultCharset": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-multipart/config/config.default.js",
+    "fieldNameSize": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-multipart/config/config.default.js",
+    "fieldSize": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-multipart/config/config.default.js",
+    "fields": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-multipart/config/config.default.js",
+    "fileSize": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-multipart/config/config.default.js",
+    "files": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-multipart/config/config.default.js",
+    "fileExtensions": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-multipart/config/config.default.js",
+    "whitelist": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-multipart/config/config.default.js"
+  },
+  "security": {
+    "domainWhiteList": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+    "protocolWhiteList": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+    "defaultMiddleware": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+    "csrf": {
+      "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "useSession": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "ignoreJSON": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "cookieName": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "sessionName": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "headerName": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "bodyName": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "queryName": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+    },
+    "xframe": {
+      "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "value": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+    },
+    "hsts": {
+      "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.local.js",
+      "maxAge": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "includeSubdomains": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+    },
+    "dta": {
+      "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+    },
+    "methodnoallow": {
+      "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+    },
+    "noopen": {
+      "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+    },
+    "nosniff": {
+      "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+    },
+    "xssProtection": {
+      "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "value": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+    },
+    "csp": {
+      "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js",
+      "policy": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+    }
+  },
+  "helper": {
+    "shtml": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-security/config/config.default.js"
+  },
+  "development": {
+    "watchDirs": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-development/config/config.default.js",
+    "ignoreDirs": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-development/config/config.default.js",
+    "fastReady": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-development/config/config.default.js",
+    "reloadOnDebug": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-development/config/config.default.js"
+  },
+  "logrotator": {
+    "filesRotateByHour": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-logrotator/config/config.default.js",
+    "filesRotateBySize": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-logrotator/config/config.default.js",
+    "maxFileSize": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-logrotator/config/config.default.js",
+    "maxFiles": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-logrotator/config/config.default.js",
+    "rotateDuration": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-logrotator/config/config.default.js",
+    "maxDays": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-logrotator/config/config.default.js"
+  },
+  "jsonp": {
+    "limit": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-jsonp/config/config.default.js",
+    "callback": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-jsonp/config/config.default.js",
+    "csrf": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-jsonp/config/config.default.js"
+  },
+  "ejs": {
+    "root": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view-ejs/config/config.default.js",
+    "cache": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view-ejs/config/config.local.js",
+    "debug": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view-ejs/config/config.default.js",
+    "compileDebug": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view-ejs/config/config.default.js",
+    "delimiter": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view-ejs/config/config.default.js",
+    "strict": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg-view-ejs/config/config.default.js"
+  },
+  "env": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "name": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "proxy": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "protocolHeaders": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "ipHeaders": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "hostHeaders": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "pkg": {
+    "name": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "version": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "description": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "main": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "scripts": {
+      "test": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "dev": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "start": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+    },
+    "keywords": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "author": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "license": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "devDependencies": {
+      "egg-bin": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "egg-mock": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+    },
+    "dependencies": {
+      "cheerio": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "egg": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "egg-mysql": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "egg-view-ejs": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "egg-validate": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+    },
+    "repository": {
+      "type": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "url": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+    }
+  },
+  "baseDir": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "HOME": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "rundir": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "dump": {
+    "ignore": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+  },
+  "confusedConfigurations": {
+    "bodyparser": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "notFound": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "sitefile": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "middlewares": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "httpClient": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+  },
+  "notfound": {
+    "pageUrl": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+  },
+  "siteFile": {
+    "/favicon.ico": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+  },
+  "bodyParser": {
+    "enable": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "encoding": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "formLimit": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "jsonLimit": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "strict": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "queryString": {
+      "arrayLimit": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "depth": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "parameterLimit": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+    }
+  },
+  "logger": {
+    "dir": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "encoding": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "env": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "level": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "consoleLevel": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "disableConsoleAfterReady": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "outputJSON": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "buffer": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "appLogName": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "coreLogName": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "agentLogName": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "errorLogName": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "coreLogger": {
+      "consoleLevel": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.local.js"
+    }
+  },
+  "httpclient": {
+    "enableDNSCache": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "dnsCacheMaxLength": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "dnsCacheMaxAge": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+    "request": {
+      "timeout": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+    },
+    "httpAgent": {
+      "keepAlive": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "freeSocketKeepAliveTimeout": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "maxSockets": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "maxFreeSockets": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+    },
+    "httpsAgent": {
+      "keepAlive": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "freeSocketKeepAliveTimeout": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "maxSockets": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "maxFreeSockets": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+    }
+  },
+  "coreMiddleware": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "workerStartTimeout": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+  "cluster": {
+    "listen": {
+      "path": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "port": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js",
+      "hostname": "/Users/mr_mac1/Code/demo-projects/ClassicalChinese/node_modules/egg/config/config.default.js"
+    }
+  }
+}

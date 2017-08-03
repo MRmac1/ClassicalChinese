@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "egg-bin test --timeout=6000000",
-    "dev": "egg-bin dev",
+    "dev": "egg-bin dev -- $NODE_DEBUG_OPTION",
     "start": "EGG_SERVER_ENV=prod npm start"
   },
   "keywords": [],
@@ -17,13 +17,13 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
-    "egg": "^1.3.0",
+    "egg": "^1.7.0",
     "egg-mysql": "^3.0.0",
-    "egg-view-ejs": "^1.1.0",
-    "koa-cors": "0.0.16"
+    "egg-validate": "^1.0.0",
+    "egg-view-ejs": "^1.1.0"
   },
-  "repository":  {
-    "type" : "git",
-    "url" : "https://github.com/MRmac1/ClassicalChinese"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MRmac1/ClassicalChinese"
   }
 }
